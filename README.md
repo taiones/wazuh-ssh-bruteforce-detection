@@ -66,7 +66,7 @@ Para refinar o ecossistema de monitoramento, o arquivo de assinaturas locais `/v
 ```
 ---
 
-* **💡 Nota de Engenharia: A regra customizada herda as propriedades lógicas do parser nativo do serviço e eleva o nível de severidade para 10 (Alta Criticidade), assegurando a correlação gráfica imediata com os requisitos de conformidade regulatória PCI DSS 10.2.4 e 10.2.5 na interface web do SIEM.
+**💡 Nota de Engenharia: A regra customizada herda as propriedades lógicas do parser nativo do serviço e eleva o nível de severidade para 10 (Alta Criticidade), assegurando a correlação gráfica imediata com os requisitos de conformidade regulatória PCI DSS 10.2.4 e 10.2.5 na interface web do SIEM.**
 
 ## 🚀 Execução do Ataque e Evidências Técnicas
 ### 1. Varredura de Infraestrutura (Nmap)
@@ -75,7 +75,7 @@ A atividade ofensiva iniciou-se através de um mapeamento lógico da rede intern
 ```bash
 nmap -A -v 10.0.0.62
 ```
-![Mapeamento de Portas com Nmap](img/nmap.png)
+![Mapeamento de Portas com Nmap](img/nmap.png/nmap.png)
 
 O utilitário confirmou a presença do serviço SSH ativo respondendo na porta padrão TCP 22.
 
@@ -85,7 +85,7 @@ Utilizou-se a ferramenta Hydra, parametrizada de forma paralela e cadenciada, co
 ```bash
 hydra -t 2 -l kali -P /home/kali/minha_worldlist.txt ssh://10.0.0.62
 ```
-![Execução do Brute Force via Hydra](img/hydra.png)
+![Execução do Brute Force via Hydra](img/hydra.png/hydra.png)
 
 ### 3. Análise Forense de Logs (/var/log/auth.log)
 A volumetria agressiva gerou um rastro claro e padronizado de erros repetitivos no subsistema de autenticação Linux, evidenciando o estouro do limite máximo de tentativas configuradas.
@@ -94,12 +94,12 @@ A volumetria agressiva gerou um rastro claro e padronizado de erros repetitivos 
 2026-05-17T03:32:29.991261-03:00 kali-VMware-Virtual-Platform sshd-session[5974]: error: maximum authentication attempts exceeded for kali from 10.0.0.57 port 48436 ssh2 [preauth]
 2026-05-17T03:32:29.991835-03:00 kali-VMware-Virtual-Platform sshd-session[5974]: Disconnecting authenticating user kali 10.0.0.57 port 48436: Too many authentication failures [preauth]
 ```
-![Análise Forense de Logs de Autenticação](img/auth_log.png)
+![Análise Forense de Logs de Autenticação](img/auth_log.png/auth_log.png)
 
 ### 4. Triagem e Ingestão de Telemetria no Dashboard do Wazuh
 O motor analítico central processou as cadeias de mensagens em tempo de milissegundos, gerando alertas agregados no painel web que correlacionam de forma clara as táticas do MITRE ATT&CK de Acesso a Credenciais (T1110) e Movimentação Lateral (T1021.004).
 
-![Dashboard do Wazuh - Alertas Gerados](img/wazuh_dashboard.png)
+![Dashboard do Wazuh - Alertas Gerados](img/wazuh_dashboard.png/wazuh_dashboard.png)
 
 ## 🔒 Conclusões e Recomendações de Hardening
 Os testes empíricos evidenciaram que a utilização de configurações padrão de fábrica de serviços expostos eleva de forma severa a superfície de risco dos ativos. Diante do cenário mapeado, recomenda-se a aplicação das seguintes ações imediatas de proteção em ambiente de produção:
