@@ -1,0 +1,1 @@
+# wazuh-ssh-bruteforce-detection
