@@ -75,7 +75,9 @@ A atividade ofensiva iniciou-se através de um mapeamento lógico da rede intern
 ```bash
 nmap -A -v 10.0.0.62
 ```
-![Mapeamento de Portas com Nmap](img/nmap.png/nmap.png)
+<p align="center">
+  <img src="img/nmap/nmap.png" alt="Mapeamento de Portas com Nmap">
+</p>
 
 O utilitário confirmou a presença do serviço SSH ativo respondendo na porta padrão TCP 22.
 
@@ -85,7 +87,9 @@ Utilizou-se a ferramenta Hydra, parametrizada de forma paralela e cadenciada, co
 ```bash
 hydra -t 2 -l kali -P /home/kali/minha_worldlist.txt ssh://10.0.0.62
 ```
-![Execução do Brute Force via Hydra](img/hydra.png/hydra.png)
+<p align="center">
+  <img src="img/hydra/hydra.png" alt="Execução do Brute Force via Hydra">
+</p>
 
 ### 3. Análise Forense de Logs (/var/log/auth.log)
 A volumetria agressiva gerou um rastro claro e padronizado de erros repetitivos no subsistema de autenticação Linux, evidenciando o estouro do limite máximo de tentativas configuradas.
@@ -94,12 +98,16 @@ A volumetria agressiva gerou um rastro claro e padronizado de erros repetitivos 
 2026-05-17T03:32:29.991261-03:00 kali-VMware-Virtual-Platform sshd-session[5974]: error: maximum authentication attempts exceeded for kali from 10.0.0.57 port 48436 ssh2 [preauth]
 2026-05-17T03:32:29.991835-03:00 kali-VMware-Virtual-Platform sshd-session[5974]: Disconnecting authenticating user kali 10.0.0.57 port 48436: Too many authentication failures [preauth]
 ```
-![Análise Forense de Logs de Autenticação](img/auth_log.png/auth_log.png)
+<p align="center">
+  <img src="img/auth_log/auth_log.png" alt="Análise Forense de Logs de Autenticação">
+</p>
 
 ### 4. Triagem e Ingestão de Telemetria no Dashboard do Wazuh
 O motor analítico central processou as cadeias de mensagens em tempo de milissegundos, gerando alertas agregados no painel web que correlacionam de forma clara as táticas do MITRE ATT&CK de Acesso a Credenciais (T1110) e Movimentação Lateral (T1021.004).
 
-![Dashboard do Wazuh - Alertas Gerados](img/wazuh_dashboard.png/wazuh_dashboard.png)
+<p align="center">
+  <img src="img/wazuh_dashboard/wazuh_dashboard.png" alt="Dashboard do Wazuh - Alertas Gerados">
+</p>
 
 ## 🔒 Conclusões e Recomendações de Hardening
 Os testes empíricos evidenciaram que a utilização de configurações padrão de fábrica de serviços expostos eleva de forma severa a superfície de risco dos ativos. Diante do cenário mapeado, recomenda-se a aplicação das seguintes ações imediatas de proteção em ambiente de produção:
