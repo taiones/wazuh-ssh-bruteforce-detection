@@ -72,23 +72,24 @@ Para refinar o ecossistema de monitoramento, o arquivo de assinaturas locais `/v
 ### 1. Varredura de Infraestrutura (Nmap)
 A atividade ofensiva iniciou-se através de um mapeamento lógico da rede interna para delimitar portas abertas e serviços vulneráveis expostos.
 
-Bash
+```bash
 nmap -A -v 10.0.0.62
+```
 O utilitário confirmou a presença do serviço SSH ativo respondendo na porta padrão TCP 22.
 
 ### 2. Campanha de Força Bruta (Hydra)
 Utilizou-se a ferramenta Hydra, parametrizada de forma paralela e cadenciada, consumindo uma wordlist massiva customizada contra a instância Ubuntu.
 
-Bash
+```bash
 hydra -t 2 -l kali -P /home/kali/minha_worldlist.txt ssh://10.0.0.62
-
+```
 ### 3. Análise Forense de Logs (/var/log/auth.log)
 A volumetria agressiva gerou um rastro claro e padronizado de erros repetitivos no subsistema de autenticação Linux, evidenciando o estouro do limite máximo de tentativas configuradas.
 
-Plaintext
+```plaintext
 2026-05-17T03:32:29.991261-03:00 kali-VMware-Virtual-Platform sshd-session[5974]: error: maximum authentication attempts exceeded for kali from 10.0.0.57 port 48436 ssh2 [preauth]
 2026-05-17T03:32:29.991835-03:00 kali-VMware-Virtual-Platform sshd-session[5974]: Disconnecting authenticating user kali 10.0.0.57 port 48436: Too many authentication failures [preauth]
-
+```
 ### 4. Triagem e Ingestão de Telemetria no Dashboard do Wazuh
 O motor analítico central processou as cadeias de mensagens em tempo de milissegundos, gerando alertas agregados no painel web que correlacionam de forma clara as táticas do MITRE ATT&CK de Acesso a Credenciais (T1110) e Movimentação Lateral (T1021.004).
 
